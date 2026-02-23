@@ -1,15 +1,49 @@
 #include <stdio.h>
+#include <string.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
+struct CartaSuperTrunfo {
+    char estado;
+    char codigo[4]; // 3 caracteres + '\0'
+    char cidade[50];
+    int populacao;
+};
+
+void lerCarta(struct CartaSuperTrunfo *carta) {
+    printf("Digite o estado (uma letra de A a H): ");
+    scanf(" %c", &carta->estado);
+
+    printf("Digite o código da carta: ");
+    scanf("%3s", carta->codigo); // limita para evitar overflow
+
+    printf("Digite o nome da cidade: ");
+    scanf(" %49[^\n]", carta->cidade); // permite espaços no nome
+
+    printf("Digite a população da cidade: ");
+    scanf("%d", &carta->populacao);
+}
 
 int main() {
-  // Área para definição das variáveis para armazenar as propriedades das cidades
 
-  // Área para entrada de dados
+    // Declaração das cartas
+    struct CartaSuperTrunfo carta1, carta2;
 
-  // Área para exibição dos dados da cidade
+    printf("Insira os dados da primeira carta:\n");
+    lerCarta(&carta1);
 
-return 0;
-} 
+    printf("\nInsira os dados da segunda carta:\n");
+    lerCarta(&carta2);
+
+    printf("\nDados da primeira carta:\n");
+    printf("Estado: %c\n", carta1.estado);
+    printf("Código: %s\n", carta1.codigo);
+    printf("Cidade: %s\n", carta1.cidade);
+    printf("População: %d\n", carta1.populacao);
+
+    printf("\nDados da segunda carta:\n");
+    printf("Estado: %c\n", carta2.estado);
+    printf("Código: %s\n", carta2.codigo);
+    printf("Cidade: %s\n", carta2.cidade);
+    printf("População: %d\n", carta2.populacao);
+
+    return 0;
+}
